@@ -8,9 +8,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
+import 'package:udp/udp.dart';
 import 'package:demo/main.dart';
 
 void main() {
+  sendMessage("aa550000bb66");
   // testWidgets('Counter increments smoke test', (WidgetTester tester) async {
   //   // Build our app and trigger a frame.
   //   await tester.pumpWidget(const MyApp());
@@ -27,4 +29,11 @@ void main() {
   //   expect(find.text('0'), findsNothing);
   //   expect(find.text('1'), findsOneWidget);
   // });
+}
+
+// 发送信息
+void sendMessage(String msg) async {
+  var sender = await UDP.bind(Endpoint.any());
+  await sender.send(msg.codeUnits, Endpoint.broadcast(port: Port.any));
+  sender.close();
 }
