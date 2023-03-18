@@ -7,10 +7,9 @@ import 'package:udp/udp.dart';
 
 class UdpButtonFul extends StatefulWidget {
   const UdpButtonFul(
-      {super.key, this.label = "按钮", this.callback, required this.msg});
+      {super.key, this.label = "按钮", required this.msg});
 
   final String label;
-  final Function? callback;
   final String msg;
 
   @override
@@ -22,7 +21,6 @@ class _UdpButtonFulState extends State<UdpButtonFul> {
   void _click() {
     setState(() {
       Udp.send(widget.msg);
-      widget.callback!();
     });
   }
 
@@ -30,7 +28,10 @@ class _UdpButtonFulState extends State<UdpButtonFul> {
   Widget build(BuildContext context) {
     return Container(
         margin: const EdgeInsets.all(10),
-        height: 50,
-        child: ElevatedButton(onPressed: _click, child: Text(widget.label)));
+        child: ElevatedButton(
+            onPressed: _click,
+            child: Text(
+              widget.label,
+            )));
   }
 }
