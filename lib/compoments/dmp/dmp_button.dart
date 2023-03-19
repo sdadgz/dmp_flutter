@@ -3,11 +3,8 @@ import 'dart:math';
 import 'package:demo/compoments/common/udp.dart';
 import 'package:flutter/material.dart';
 
-import 'package:udp/udp.dart';
-
 class UdpButtonFul extends StatefulWidget {
-  const UdpButtonFul(
-      {super.key, this.label = "按钮", required this.msg});
+  const UdpButtonFul({super.key, this.label = "按钮", required this.msg});
 
   final String label;
   final String msg;
@@ -27,11 +24,13 @@ class _UdpButtonFulState extends State<UdpButtonFul> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        margin: const EdgeInsets.all(10),
-        child: ElevatedButton(
-            onPressed: _click,
-            child: Text(
-              widget.label,
-            )));
+      margin: const EdgeInsets.all(10),
+      child: ElevatedButton(
+        onPressed: _click,
+        child: Text(
+          widget.label,
+        ),
+      ),
+    );
   }
 }

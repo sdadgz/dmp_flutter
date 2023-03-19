@@ -12,7 +12,7 @@
 
 ## 心跳
 
-```
+```json
 {
     "heartbeat": true
 }

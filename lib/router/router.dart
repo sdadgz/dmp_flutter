@@ -1,4 +1,5 @@
 import 'package:demo/pages/dmp.dart';
+import 'package:demo/pages/home.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -18,11 +19,11 @@ class Routers extends StatelessWidget {
       GoRoute(
         path: '/',
         builder: (BuildContext context, GoRouterState state) {
-          return const Dmp();
+          return const Home();
         },
         routes: <RouteBase>[
           GoRoute(
-            path: 'edit',
+            path: 'dmp',
             builder: (BuildContext context, GoRouterState state) {
               return const Dmp();
             },
