@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:demo/compoments/common/log.dart';
+import 'package:demo/components/common/log.dart';
 import 'package:udp/udp.dart';
 
 class Udp {
@@ -16,8 +16,11 @@ class Udp {
     sender.close();
   }
 
+
   // 接收信息
   static void receive(Function callback) {
+    Log.info("开始接收udp数据");
+
     RawDatagramSocket.bind(InternetAddress.anyIPv4, receiverPort)
         .then((RawDatagramSocket udpSocket) {
       udpSocket.broadcastEnabled = true;

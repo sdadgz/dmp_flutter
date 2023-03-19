@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:demo/compoments/common/udp.dart';
+import 'package:demo/components/common/udp.dart';
 import 'package:flutter/material.dart';
 
 class UdpButtonFul extends StatefulWidget {

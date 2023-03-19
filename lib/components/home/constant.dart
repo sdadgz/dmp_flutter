@@ -22,7 +22,15 @@ String getDevicesState(int stateCode) {
 
 // 设备
 class Devices {
-  int nameCode = 0;
-  int state = 0;
-  String serialNumber = "44d402b4-b797-4071-9a0e-701f035fbe3e";
+  Devices({
+    this.uri = "/",
+    this.nameCode = 0,
+    this.state = 0,
+    this.serialNumber = "44d402b4-b797-4071-9a0e-701f035fbe3e",
+  });
+
+  final String uri; // 路径
+  final int nameCode; // 代码
+  final int state; // 状态
+  final String serialNumber; // uuid
 }

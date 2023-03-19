@@ -5,8 +5,8 @@
 // gestures. You can also use WidgetTester to find child widgets in the widget
 // tree, read text, and verify that the values of widget properties are correct.
 
-import 'package:demo/compoments/common/log.dart';
-import 'package:demo/compoments/common/udp.dart';
+import 'package:demo/components/common/log.dart';
+import 'package:demo/components/common/udp.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 

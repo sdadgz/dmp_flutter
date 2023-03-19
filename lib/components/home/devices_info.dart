@@ -1,4 +1,4 @@
-import 'package:demo/compoments/home/constant.dart';
+import 'package:demo/components/home/constant.dart';
 import 'package:flutter/material.dart';
 
 // 设备在线信息

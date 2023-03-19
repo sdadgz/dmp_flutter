@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../compoments/common/log.dart';
-import '../compoments/common/udp.dart';
-import '../compoments/dmp/constant.dart';
-import '../compoments/dmp/dmp_button.dart';
+import '../components/common/log.dart';
+import '../components/common/udp.dart';
+import '../components/dmp/constant.dart';
+import '../components/dmp/dmp_button.dart';
 
 class Dmp extends StatefulWidget {
   const Dmp({Key? key, this.title = "小测试咯"}) : super(key: key);
