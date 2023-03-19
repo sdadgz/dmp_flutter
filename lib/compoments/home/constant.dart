@@ -19,3 +19,10 @@ String getDevicesName(int devicesCode) {
 String getDevicesState(int stateCode) {
   return _devicesStateMap[stateCode] ?? "未知状态";
 }
+
+// 设备
+class Devices {
+  int nameCode = 0;
+  int state = 0;
+  String serialNumber = "44d402b4-b797-4071-9a0e-701f035fbe3e";
+}

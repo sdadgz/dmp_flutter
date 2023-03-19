@@ -1,4 +1,6 @@
 import 'package:demo/compoments/common/card.dart';
+import 'package:demo/compoments/common/log.dart';
+import 'package:demo/compoments/common/udp.dart';
 import 'package:demo/compoments/dmp/dmp_button.dart';
 import 'package:demo/compoments/home/devices_info.dart';
 import 'package:demo/pages/dmp.dart';
@@ -38,10 +40,16 @@ class _HomeState extends State<Home> {
                 ),
                 SCard(
                   child: Column(
-                    children: const [
+                    children: [
                       // todo udp获取数据
-                      DevicesDetails(nameCode: 0, devicesState: 1),
-                      DevicesDetails(nameCode: 0, devicesState: 1),
+                      const DevicesDetails(nameCode: 0, devicesState: 1),
+                      const DevicesDetails(nameCode: 0, devicesState: 1),
+                      ElevatedButton(
+                        onPressed: () async {
+                          Udp.receive(() {});
+                        },
+                        child: const Text("草"),
+                      )
                     ],
                   ),
                 ),
@@ -49,5 +57,10 @@ class _HomeState extends State<Home> {
             )),
       ),
     );
+  }
+
+  @override
+  void initState() {
+    super.initState();
   }
 }
