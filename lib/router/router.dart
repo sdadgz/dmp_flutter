@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:demo/components/common/udp.dart';
 import 'package:demo/pages/dmp.dart';
 import 'package:demo/pages/home.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +28,12 @@ class Routers extends StatelessWidget {
           GoRoute(
             path: 'dmp',
             builder: (BuildContext context, GoRouterState state) {
-              return const Dmp();
+              return Dmp(
+                address: InternetAddress(
+                    state.queryParams["address"] ?? "255.255.255.255"),
+                port: int.parse(
+                    state.queryParams["port"] ?? Udp.receiverPort.toString()),
+              );
             },
           ),
         ],

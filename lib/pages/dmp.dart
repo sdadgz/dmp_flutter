@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -7,10 +9,19 @@ import '../components/dmp/constant.dart';
 import '../components/dmp/dmp_button.dart';
 
 class Dmp extends StatefulWidget {
-  const Dmp({Key? key, this.title = "小测试咯"}) : super(key: key);
+  const Dmp(
+      {Key? key,
+      this.title = "小测试咯",
+      required this.address,
+      required this.port})
+      : super(key: key);
 
   // 页面标题
   final String title;
+
+  // ip port
+  final InternetAddress address;
+  final int port;
 
   @override
   State<Dmp> createState() => _DmpState();
@@ -33,9 +44,19 @@ class _DmpState extends State<Dmp> {
           child: Center(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
-                UdpButtonFul(label: "开始", msg: startMsg),
-                UdpButtonFul(label: "暂停", msg: pauseMsg),
+              children: [
+                UdpButtonFul(
+                  label: "开始",
+                  msg: startMsg,
+                  address: widget.address,
+                  port: widget.port,
+                ),
+                UdpButtonFul(
+                  label: "暂停",
+                  msg: pauseMsg,
+                  address: widget.address,
+                  port: widget.port,
+                ),
               ],
             ),
           ),

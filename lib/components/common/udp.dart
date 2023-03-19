@@ -5,17 +5,27 @@ import 'package:udp/udp.dart';
 
 class Udp {
   // 端口
-  static int targetPort = 60000;
-  static int receiverPort = 3000;
+  static int targetPort = 60000; // 目标端口
+  static int receiverPort = 3000; // 接收端口
 
   // 广播发送信息
   static void broadcastHex(String msg) async {
-    var sender = await UDP.bind(Endpoint.any(port: receiverPort));
+    var sender = await UDP.bind(Endpoint.any(port: Port(receiverPort)));
     await sender.send(_hexMsg(msg), Endpoint.broadcast(port: Port(targetPort)));
     Log.info("广播消息 $msg 到 $targetPort 端口");
     sender.close();
   }
 
+  // 发送信息
+  static void sendHex(String msg, InternetAddress address, int port) async {
+    var sender = await UDP.bind(Endpoint.any(port: Port(receiverPort)));
+    await sender.send(
+      _hexMsg(msg),
+      Endpoint.unicast(address, port: Port(port)),
+    );
+    Log.info("发送消息 $msg 到 ${address.address} 的 $targetPort 端口");
+    sender.close();
+  }
 
   // 接收信息
   static void receive(Function callback) {
@@ -28,7 +38,7 @@ class Udp {
         Datagram? dg = udpSocket.receive();
         if (dg != null) {
           Log.info("udp received ${String.fromCharCodes(dg.data)}");
-          callback(String.fromCharCodes(dg.data));
+          callback(String.fromCharCodes(dg.data), dg.address, dg.port);
         }
       });
     });

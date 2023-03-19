@@ -1,4 +1,8 @@
 // 设备名字表
+import 'dart:io';
+
+import 'package:demo/components/common/udp.dart';
+
 Map<int, String> _devicesNameMap = {
   0: "测试用虚拟",
 };
@@ -27,10 +31,14 @@ class Devices {
     this.nameCode = 0,
     this.state = 0,
     this.serialNumber = "44d402b4-b797-4071-9a0e-701f035fbe3e",
+    required this.address,
+    required this.port,
   });
 
   final String uri; // 路径
   final int nameCode; // 代码
   final int state; // 状态
   final String serialNumber; // uuid
+  final InternetAddress address;
+  final int port;
 }

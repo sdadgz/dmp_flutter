@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:demo/components/home/constant.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 // 设备在线信息
 class DevicesInfo extends StatelessWidget {
@@ -23,16 +26,20 @@ class DevicesInfo extends StatelessWidget {
 // 设备详情卡片
 class DevicesDetails extends StatelessWidget {
   const DevicesDetails(
-      {Key? key, required this.nameCode, required this.devicesState})
+      {Key? key, required this.nameCode, required this.devicesState, required this.address, required this.port})
       : super(key: key);
 
   final int nameCode; // 设备名代码
   final int devicesState; // 设备状态
 
+  // ip 和 port
+  final InternetAddress address;
+  final int port;
+
   @override
   Widget build(BuildContext context) {
     return OutlinedButton(
-      onPressed: () {},
+      onPressed: () => context.go("/dmp?address=${address.address}&port=$port"),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [

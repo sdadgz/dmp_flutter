@@ -42,8 +42,12 @@ class _HomeState extends State<Home> {
     List<DevicesDetails> res = [];
     setState(() {
       List<DevicesDetails> list = devicesList
-          .map((e) =>
-              DevicesDetails(nameCode: e.nameCode, devicesState: e.state))
+          .map((e) => DevicesDetails(
+                nameCode: e.nameCode,
+                devicesState: e.state,
+                address: e.address,
+                port: e.port,
+              ))
           .toList();
       res.addAll(list);
     });
@@ -95,7 +99,7 @@ class _HomeState extends State<Home> {
   void initState() {
     super.initState();
     // 监听 /heartbeat
-    Udp.receive((str) {
+    Udp.receive((str, address, port) {
       setState(() {
         var map = jsonDecode(str);
         switch (map["uri"]) {
@@ -108,6 +112,8 @@ class _HomeState extends State<Home> {
               nameCode: map["nameCode"],
               state: map["state"],
               serialNumber: map["serialNumber"],
+              address: address,
+              port: port,
             );
 
             // 加进去
