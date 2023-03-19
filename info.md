@@ -14,7 +14,9 @@
 
 ```json
 {
-    "heartbeat": true
+  "nameCode": 1,
+  "state": 0
 }
 ```
+
 

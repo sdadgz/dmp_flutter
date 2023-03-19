@@ -55,7 +55,7 @@ class _DmpState extends State<Dmp> {
   Widget _showEditDialog(BuildContext context) {
     controller = TextEditingController();
     // 设置值
-    controller.text = Udp.port.toString();
+    controller.text = Udp.targetPort.toString();
 
     return StatefulBuilder(builder: (context, setState) {
       return AlertDialog(
@@ -99,7 +99,7 @@ class _DmpState extends State<Dmp> {
             onPressed: () {
               final int port = int.parse(controller.text);
               if (port > 0 && port <= 65535) {
-                Udp.port = port;
+                Udp.targetPort = port;
                 Navigator.pop(context);
                 Log.info(port);
               }

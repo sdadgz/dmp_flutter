@@ -17,7 +17,7 @@ class _UdpButtonFulState extends State<UdpButtonFul> {
   // 点击按钮
   void _click() {
     setState(() {
-      Udp.send(widget.msg);
+      Udp.broadcastHex(widget.msg);
     });
   }
 

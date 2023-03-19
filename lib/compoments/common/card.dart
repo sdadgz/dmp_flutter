@@ -13,7 +13,7 @@ class SCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: const EdgeInsets.all(20),
+      margin: const EdgeInsets.fromLTRB(20, 20, 20, 0),
       color: color,
       shadowColor: Colors.grey,
       elevation: 6,

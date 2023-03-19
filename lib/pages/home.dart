@@ -1,12 +1,13 @@
 import 'package:demo/compoments/common/card.dart';
 import 'package:demo/compoments/dmp/dmp_button.dart';
+import 'package:demo/compoments/home/devices_info.dart';
 import 'package:demo/pages/dmp.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
-  const Home({Key? key}) : super(key: key);
+  const Home({Key? key, this.title = "标题"}) : super(key: key);
 
-  final String title = "title";
+  final String title;
 
   @override
   State<Home> createState() => _HomeState();
@@ -18,15 +19,32 @@ class _HomeState extends State<Home> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: const Text("中心名字"),
+          title: Text(widget.title),
         ),
         body: Container(
             color: Colors.white54,
             child: ListView(
-              children: const [
+              children: [
                 SCard(
-                  child: Text("data"),
-                )
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: const [
+                      // todo udp获取数据
+                      DevicesInfo(count: 1, label: "设备总数"),
+                      DevicesInfo(count: 1, label: "在线设备"),
+                      DevicesInfo(count: 0, label: "故障设备"),
+                    ],
+                  ),
+                ),
+                SCard(
+                  child: Column(
+                    children: const [
+                      // todo udp获取数据
+                      DevicesDetails(nameCode: 0, devicesState: 1),
+                      DevicesDetails(nameCode: 0, devicesState: 1),
+                    ],
+                  ),
+                ),
               ],
             )),
       ),

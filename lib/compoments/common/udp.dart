@@ -3,15 +3,18 @@ import 'package:udp/udp.dart';
 
 class Udp {
   // 端口
-  static int port = 60000;
+  static int targetPort = 60000;
+  static int receiverPort = 3000;
 
-  static void send(String msg) async {
-    var sender = await UDP.bind(Endpoint.any());
-    await sender.send(_hexMsg(msg), Endpoint.broadcast(port: Port(port)));
-    Log.info("发送消息 $msg 到 $port 端口");
+  // 广播发送信息
+  static void broadcastHex(String msg) async {
+    var sender = await UDP.bind(Endpoint.any(port: receiverPort));
+    await sender.send(_hexMsg(msg), Endpoint.broadcast(port: Port(targetPort)));
+    Log.info("广播消息 $msg 到 $targetPort 端口");
     sender.close();
   }
 
+  // 转16进制数组
   static List<int> _hexMsg(String msg) {
     List<int> res = [];
     // 去非法数据
