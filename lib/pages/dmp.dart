@@ -66,24 +66,28 @@ class _DmpState extends State<Dmp> {
                   port: widget.port,
                 ),
               ),
-              // const Divider(),
-              //
-              // // 被动模式
-              // const STitle(title: "被动模式"),
-              // UdpButtonsGrid(
-              //   modList: passiveModMap,
-              //   address: widget.address,
-              //   port: widget.port,
-              // ),
-              // const Divider(),
-              //
-              // // 主动模式
-              // const STitle(title: "主动模式"),
-              // UdpButtonsGrid(
-              //   modList: activeModMap,
-              //   address: widget.address,
-              //   port: widget.port,
-              // ),
+              const Divider(),
+
+              // 被动模式
+              const STitle(title: "被动模式"),
+              Expanded(
+                child: UdpButtonsGrid(
+                  modList: passiveModMap,
+                  address: widget.address,
+                  port: widget.port,
+                ),
+              ),
+              const Divider(),
+
+              // 主动模式
+              const STitle(title: "主动模式"),
+              Expanded(
+                child: UdpButtonsGrid(
+                  modList: activeModMap,
+                  address: widget.address,
+                  port: widget.port,
+                ),
+              ),
             ],
           ),
         ),
