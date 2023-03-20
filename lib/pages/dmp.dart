@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:demo/components/common/dialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -64,7 +65,7 @@ class _DmpState extends State<Dmp> {
         floatingActionButton: FloatingActionButton(
           onPressed: () => showCupertinoDialog(
             context: context,
-            builder: _showEditDialog,
+            builder: _newShowEditDialog,
           ),
           child: const Icon(Icons.edit),
         ),
@@ -72,63 +73,47 @@ class _DmpState extends State<Dmp> {
     );
   }
 
-  // 弹窗
-  Widget _showEditDialog(BuildContext context) {
+  // 新弹窗
+  Widget _newShowEditDialog(BuildContext context) {
     controller = TextEditingController();
     // 设置值
     controller.text = Udp.targetPort.toString();
 
-    return StatefulBuilder(builder: (context, setState) {
-      return AlertDialog(
-        title: const Text("编辑设置"),
-        content: SingleChildScrollView(
-          child: Column(
-            children: [
-              TextField(
-                controller: controller,
-                keyboardType: TextInputType.number,
-                textInputAction: TextInputAction.done,
-                onChanged: (text) {
-                  setState(() {
-                    final int port = int.parse(text);
-                    if (port > 0 && port <= 65535) {
-                      _errorText = null;
-                      Log.info(port);
-                    } else {
-                      _errorText = numberOutOfPortErrorText;
-                      Log.error(_errorText);
-                    }
-                  });
-                },
-                decoration: InputDecoration(
-                  hintText: "输入端口号",
-                  labelText: "端口",
-                  errorText: _errorText,
-                ),
-              ),
-            ],
-          ),
-        ),
-        actions: [
-          // 取消
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: const Text("取消", style: TextStyle(color: Colors.grey)),
-          ),
-          // 确认
-          TextButton(
-            onPressed: () {
-              final int port = int.parse(controller.text);
-              if (port > 0 && port <= 65535) {
-                Udp.targetPort = port;
-                Navigator.pop(context);
-                Log.info(port);
-              }
+    return SConfirmDialog(
+      confirm: () {
+        final int port = int.parse(controller.text);
+        if (port > 0 && port <= 65535) {
+          Udp.targetPort = port;
+          Navigator.pop(context);
+          Log.info(port);
+        }
+      },
+      children: [
+        StatefulBuilder(
+          builder: (context, setState) => TextField(
+            controller: controller,
+            keyboardType: TextInputType.number,
+            textInputAction: TextInputAction.done,
+            onChanged: (text) {
+              setState(() {
+                final int port = int.parse(text);
+                if (port > 0 && port <= 65535) {
+                  _errorText = null;
+                  Log.info(port);
+                } else {
+                  _errorText = numberOutOfPortErrorText;
+                  Log.error(_errorText);
+                }
+              });
             },
-            child: const Text("确定"),
+            decoration: InputDecoration(
+              hintText: "输入端口号",
+              labelText: "端口",
+              errorText: _errorText,
+            ),
           ),
-        ],
-      );
-    });
+        )
+      ],
+    );
   }
 }

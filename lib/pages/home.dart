@@ -54,47 +54,7 @@ class _HomeState extends State<Home> {
     return res;
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text(widget.title),
-        ),
-        body: Container(
-            color: Colors.white54,
-            child: ListView(
-              children: [
-                SCard(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      // udp获取数据
-                      ..._getDevicesInfo()
-                    ],
-                  ),
-                ),
-                SCard(
-                  child: Column(
-                    children: [
-                      // udp获取数据
-                      const Text(
-                        "设备列表",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20,
-                        ),
-                      ),
-                      ..._getDevicesList(),
-                    ],
-                  ),
-                ),
-              ],
-            )),
-      ),
-    );
-  }
-
+  // 初始化
   @override
   void initState() {
     super.initState();
@@ -134,5 +94,51 @@ class _HomeState extends State<Home> {
         }
       });
     });
+  }
+
+  // 入口
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text(widget.title),
+        ),
+        body: Container(
+            color: Colors.white54,
+            child: ListView(
+              children: [
+                SCard(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      // udp获取数据
+                      ..._getDevicesInfo()
+                    ],
+                  ),
+                ),
+                SCard(
+                  child: Column(
+                    children: [
+                      // udp获取数据
+                      const Text(
+                        "设备列表",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                        ),
+                      ),
+                      ..._getDevicesList(),
+                      ElevatedButton(
+                        onPressed: () => context.go('/dmp'),
+                        child: const Text("调试用跳转dmp"),
+                      )
+                    ],
+                  ),
+                ),
+              ],
+            )),
+      ),
+    );
   }
 }
