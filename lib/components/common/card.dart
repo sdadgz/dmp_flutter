@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class SCard extends StatelessWidget {
   const SCard(
       {Key? key,
-      this.child = const Text("卡片"),
+      required this.child,
       this.color = Colors.lightBlueAccent})
       : super(key: key);
 
