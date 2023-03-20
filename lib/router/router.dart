@@ -33,6 +33,7 @@ class Routers extends StatelessWidget {
                     state.queryParams["address"] ?? "255.255.255.255"),
                 port: int.parse(
                     state.queryParams["port"] ?? Udp.receiverPort.toString()),
+                title: state.queryParams["title"] ?? "设备名",
               );
             },
           ),

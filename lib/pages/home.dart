@@ -78,12 +78,24 @@ class _HomeState extends State<Home> {
 
             // 加进去
             bool flag = true;
-            for (var element in devicesList) {
-              if (element.serialNumber == devices.serialNumber) {
+
+            for (int i = 0; i < devicesList.length; i++) {
+              if (devicesList[i].serialNumber == devices.serialNumber) {
+                devicesList[i] = devices;
+                // 更新状态
                 flag = false;
                 break;
-              } // todo 相同应该覆盖，懒，不想写了
+              }
             }
+
+            // for (var element in devicesList) {
+            //   if (element.serialNumber == devices.serialNumber) {
+            //     // 更新状态
+            //     flag = false;
+            //     break;
+            //   }
+            // }
+
             if (flag) {
               devicesList.add(devices);
             }

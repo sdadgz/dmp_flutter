@@ -16,7 +16,7 @@
 {
   "uri": "/heartbeat",
   "nameCode": 1,
-  "state": 0,
+  "state": 1,
   "serialNumber": "44d402b4-b797-4071-9a0e-701f035fbe3e"
 }
 ```
