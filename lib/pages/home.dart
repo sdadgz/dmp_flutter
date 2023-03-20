@@ -88,14 +88,6 @@ class _HomeState extends State<Home> {
               }
             }
 
-            // for (var element in devicesList) {
-            //   if (element.serialNumber == devices.serialNumber) {
-            //     // 更新状态
-            //     flag = false;
-            //     break;
-            //   }
-            // }
-
             if (flag) {
               devicesList.add(devices);
             }

@@ -1,8 +1,11 @@
 import 'dart:io';
 
+import 'package:demo/components/common/card.dart';
+import 'package:demo/components/common/constant.dart';
 import 'package:demo/components/common/dialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../components/common/log.dart';
 import '../components/common/udp.dart';
@@ -39,29 +42,38 @@ class _DmpState extends State<Dmp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(title: Text(widget.title)),
-        body: Container(
-          color: Colors.white54,
-          child: Center(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                UdpButtonFul(
-                  label: "开始",
-                  msg: startMsg,
-                  address: widget.address,
-                  port: widget.port,
-                ),
-                UdpButtonFul(
-                  label: "暂停",
-                  msg: pauseMsg,
-                  address: widget.address,
-                  port: widget.port,
-                ),
-              ],
-            ),
+        // 头
+        appBar: AppBar(
+          title: Text(widget.title),
+          leading: IconButton(
+            onPressed: () => context.pop(),
+            icon: const Icon(Icons.arrow_back_outlined),
           ),
         ),
+
+        // 主体
+        body: Container(
+          color: Colors.white54,
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            children: [
+              // 等速模式
+              const STitle(title: "等速模式"),
+              UdpButtonsGrid(
+                modList: constantVelocityModMap,
+                address: widget.address,
+                port: widget.port,
+              ),
+              const Divider(),
+
+              // 被动模式
+              const STitle(title: "被动模式"),
+
+            ],
+          ),
+        ),
+
+        // 右下角悬浮按钮
         floatingActionButton: FloatingActionButton(
           onPressed: () => showCupertinoDialog(
             context: context,
